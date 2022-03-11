@@ -1,0 +1,94 @@
+@import "https://fonts.googleapis.com/css?family=Philosopher|Poiret+One";
+
+//varibales
+$authorFontSize: 2rem;
+$quoteFontSize: 1.7rem;
+$iFontSize: 3rem;
+$groundColor: #eee;
+$groundColor-mono: #8fb299;
+$boxShadow: 4px 4px darken($groundColor, 25);
+
+//reset
+body {
+  background-color: #8fb299 !important;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+//mixins
+@mixin button {
+  float: right;
+  margin: 1rem;
+  font-family: "Poiret One", cursive;
+  font-size: 1.4rem;
+  transition: 0.6s;
+  border-radius: 0;
+  &:hover {
+    box-shadow: $boxShadow;
+  }
+}
+
+@mixin clearFix {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin rotation {
+  &:hover {
+    animation: rotation 2s linear 1 alternate;
+  }
+}
+
+//styles
+#quote-box {
+  background-color: $groundColor;
+  max-width: 55rem;
+  margin: 10% auto;
+  padding: 1rem;
+  i {
+    font-size: $iFontSize;
+    text-align: right;
+    color: $groundColor-mono;
+    @include rotation;
+  }
+  .quote-div {
+    padding: 1rem;
+    p {
+      font-size: $quoteFontSize;
+      text-align: left;
+      font-family: "Philosopher", sans-serif;
+    }
+    p#author {
+      text-align: center;
+      font-weight: normal;
+      font-family: "Poiret One", cursive;
+    }
+  }
+  .btn-div {
+    button {
+      @include button;
+    }
+    a {
+      @include button;
+      text-decoration: none;
+      color: white;
+    }
+    @include clearFix;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    box-shadow: $boxShadow;
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
